@@ -1,51 +1,53 @@
-# 🛡️ Huawei / Honor 隐私净化与续航狂飙工具包 (Safe Edition)
+# 🛡️ 【红烬副控 V3.0】华为 / 荣耀 深度隐私净网与续航狂飙工具包 (基本全收录版)
 
-本工具包专为 **华为 (Huawei) / 荣耀 (Honor)** 手机用户打造，通过官方 Android ADB 接口（免 Root、不破坏保修、不触发变砖），一键拔除后台常驻的**数据收集遥测进程、系统级广告推送、快应用跳转毒瘤以及高耗电负一屏服务**。
+本工具包专为 **华为 (Huawei / HarmonyOS)** 与 **荣耀 (Honor / MagicOS)** 手机用户打造。通过官方 Android ADB 接口（**免 Root、不破保修、绝不变砖**），一键物理掐断后台常驻的 **16+ 核心遥测内鬼、静默短信注册、屏幕内容扫描传感器、推销画像引擎以及流氓快应用跳转**。
 
-> **✨ 安全版核心承诺（Safe Edition）：**
-> - **绝不误杀**：完整保留 **应用市场 (`com.huawei.appmarket`)**、HMS Core、系统相册与日常支付通讯功能。
-> - **随时可逆**：仅针对当前用户 (`--user 0`) 卸载挂载，内置 `2_一键恢复默认组件.bat` 后悔药脚本，随时一键无损还原。
-
----
-
-## 📦 压缩包文件清单
-
-1. `1_一键隐私净化_安全版.bat` —— **主力净化脚本**（拔除后台遥测、智慧助手广告、快应用与锁屏画报）。
-2. `2_一键恢复默认组件.bat` —— **无损还原脚本**（随时恢复被移除的系统组件）。
-3. `使用教程与组件说明.md` —— 本说明文档。
+> **✨ V3.0 终极安全版核心亮点：**
+> 1. **免装 ADB 自动部署**：脚本内置智能检测，电脑没装 ADB 会自动从 Google 官方拉取精简组件，真正实现“双击即用”。
+> 2. **三重物理枷锁**：同时执行 `appops`（剥夺通知与后台运行权）+ `pm disable-user`（冻结）+ `pm uninstall`（当前用户卸载），防死灰复燃。
+> 3. **驯服应用市场**：100% 保留华为/荣耀应用市场日常下软件功能，但单独剥夺其后台自启与广告推送权限。
+> 4. **随时无损还原**：内附 `2_一键无损恢复_后悔药.bat`，3 秒恢复默认状态。
 
 ---
 
-## 🚀 三步傻瓜式使用教程（新手 3 分钟搞定）
+## 🚀 方法 A：电脑端双击傻瓜式教程（新手 2 分钟搞定）
 
-### 第一步：开启手机【USB 调试】
-1. 打开手机 **设置** -> **关于手机** -> 连续点击 **版本号** 7 次，直到提示“您已处于开发者模式”。
-2. 返回 **设置** -> **系统和更新** -> **开发人员选项**。
-3. 往下滑，开启 **【USB 调试】** 以及 **【仅充电模式下允许 ADB 调试】**（如有）。
-
-### 第二步：准备电脑端 ADB 环境
-* 如果你的电脑还没有安装 ADB（Android 平台工具），请下载官方 Google Platform-Tools 并解压，将本工具包中的 `.bat` 文件放入与 `adb.exe` 同级的文件夹下运行。
-* 用数据线将手机连接到电脑，手机屏幕弹出 **“是否允许 USB 调试？”** 时，勾选 **“始终允许”** 并点击 **确定**。
-
-### 第三步：双击运行净化脚本
-1. 双击运行 **`1_一键隐私净化_安全版.bat`**。
-2. 看到窗口显示出你的设备序列号后，按任意键继续，脚本将自动在 5 秒内完成全套后台净化。
-3. 拔下数据线，**重启一次手机**，即可立即体验后台零发热、待机掉电大幅降低的纯净系统！
+1. **开启手机【USB 调试】**：
+   - 打开手机 **设置** -> **关于手机** -> 连续点击 **版本号** 7 次（提示“您已处于开发者模式”）。
+   - 返回 **设置** -> **系统和更新** -> **开发人员选项** -> 开启 **【USB 调试】** 与 **【仅充电模式下允许 ADB 调试】**。
+2. **连接电脑并双击运行**：
+   - 将手机用数据线连上电脑，解压本压缩包，双击运行 **`1_红烬副控V3_一键深度隐私净化.bat`**。
+   - 手机屏幕弹出授权框时，勾选 **“始终允许”** 并点击 **确定**，等待 10 秒跑完代码后重启手机即可！
 
 ---
 
-## 🔍 核心清理进程清单（透明公开）
+## 📱 方法 B：懒人免装软件！（纯手机端 Shizuku / 网页版 WebADB 一行流代码）
 
-| 包名 (Package Name) | 组件名称 | 清理原因与效果 |
-| :--- | :--- | :--- |
-| `com.huawei.bd` | 用户体验改进计划 | 停止后台高频收集使用行为数据并上传服务器 |
-| `com.huawei.hiview` / `hiviewtunnel` | 系统日志与遥测通道 | 停止后台持续抓取运行日志，大幅减少待机唤醒 |
-| `com.huawei.imonitor` | 系统状态监控上报 | 移除后台静默性能与异常遥测监控 |
-| `com.huawei.powergenie` | 省电精灵 (PowerGenie) | 解除杀后台限制与温控锁帧，释放满血性能并兼容第三方通知 |
-| `com.huawei.intelligent` | 智慧助手·今天 (负一屏) | 彻底消灭负一屏资讯广告流与后台常驻内存占用 |
-| `com.huawei.search` | 智慧搜索 (下拉搜索) | 移除桌面下拉热搜词与广告推荐 |
-| `com.huawei.fastapp` / `com.hihonor.fastapp` | 快应用中心 | **重点必杀**：彻底防止网页/App 劫持自动跳转打开流氓快应用 |
-| `com.huawei.magazine` | magazine 杂志锁屏 | 停止锁屏壁纸后台自动联网下载与轮播广告 |
-| `com.huawei.vassistant` | 小艺语音助手 | 关闭后台麦克风语音唤醒监听与常驻内存 |
+如果你懒得下载脚本，可以在电脑浏览器打开 **`ya-webadb.com`**（点 Interactive Shell），或者在手机上用 **`Shizuku + aShell`**，直接复制粘贴下面这段浓缩代码回车即可：
 
-*(注：如果你日常需要使用华为钱包 NFC 刷卡或自带浏览器，只需用记事本打开 `.bat` 文件，删掉最后两行 `com.huawei.wallet` 与 `com.huawei.browser` 即可！)*
+**🔥 一键深度净化一行流代码：**
+```sh
+for p in com.huawei.hwdetectrepair com.hihonor.hwdetectrepair com.huawei.hwdiagnosis com.hihonor.hwdiagnosis com.huawei.hiview com.huawei.hiviewtunnel com.hihonor.hiview com.hihonor.hiviewtunnel com.huawei.android.chr com.hihonor.android.chr com.huawei.android.UEInfoCheck com.hihonor.android.UEInfoCheck com.huawei.android.AutoRegSms com.hihonor.android.AutoRegSms com.huawei.recsys com.huawei.suggestion com.hihonor.recsys com.hihonor.suggestion com.huawei.intelligent com.huawei.hicard com.hihonor.intelligent com.hihonor.hiboard com.hihonor.hicard com.huawei.pengine com.huawei.contentsensor com.hihonor.pengine com.hihonor.contentsensor com.huawei.magazine com.hihonor.magazine com.huawei.search com.hihonor.search com.huawei.ohos.search com.huawei.searchservice com.tencent.qqlivehuawei com.huawei.bd com.hihonor.bd com.huawei.imonitor com.hihonor.imonitor com.huawei.powergenie com.huawei.android.totemweather com.hihonor.android.totemweather com.huawei.fastapp com.hihonor.fastapp com.huawei.ohos.famanager com.huawei.browser com.hihonor.browser com.huawei.gamebox com.hihonor.gamebox com.huawei.skytone com.huawei.vassistant com.huawei.hitouch; do cmd appops set $p POST_NOTIFICATION ignore; cmd appops set $p RUN_IN_BACKGROUND ignore; cmd appops set $p RUN_ANY_IN_BACKGROUND ignore; pm disable-user --user 0 $p; pm uninstall -k --user 0 $p; done; for s in com.huawei.appmarket com.hihonor.appmarket com.huawei.hms.ads com.hihonor.hms.ads; do cmd appops set $s POST_NOTIFICATION ignore; cmd appops set $s RUN_IN_BACKGROUND ignore; done; settings put global send_action_app_error 0; settings put secure user_experience_involved 0
+```
+
+---
+
+## 🔍 V3.0 深度拔除内鬼进程全清单
+
+| 包名 (Package Name) | 真实身份与后台行为 |
+| :--- | :--- |
+| `com.huawei.hwdetectrepair` | **【智能检测】本尊**（硬件自检与后台状态上报组件） |
+| `com.huawei.hwdiagnosis` | **系统故障诊断日志收集器**（后台高频抓取诊断数据） |
+| `com.huawei.hiview` / `hiviewtunnel` | **华为底层核心遥测日志收集与加密上传通道**（内鬼头子） |
+| `com.huawei.android.chr` | **通信与网络历史记录后台上报服务**（Commercial Health Reporting） |
+| `com.huawei.android.UEInfoCheck` | **用户体验信息收集检查器**（User Experience Info Check） |
+| `com.huawei.android.AutoRegSms` | **电信运营商后台静默发短信注册服务**（极易在不知情下泄露手机号） |
+| `com.huawei.recsys` / `suggestion` | **个性化广告与系统级情景推荐引擎**（用户推销画像核心） |
+| `com.huawei.intelligent` / `hicard` | **负一屏智慧助手与资讯卡片流**（常驻后台吃内存与推送广告） |
+| `com.huawei.pengine` / `contentsensor` | **智慧感知引擎与屏幕内容识别传感器**（实时扫描你在看什么内容） |
+| `com.huawei.magazine` | **杂志锁屏与锁屏广告画报**（后台偷跑流量下载壁纸与广告） |
+| `com.huawei.ohos.search` / `searchservice` | **鸿蒙下拉全局搜索与热搜词广告服务**（桌面下拉热搜流氓推广） |
+| `com.tencent.qqlivehuawei` | **华为视频内置腾讯视频定制插件**（纯臃肿广告插件） |
+| `com.huawei.bd` / `imonitor` | **用户体验大数据计划与系统异常监控上报** |
+| `com.huawei.fastapp` / `ohos.famanager` | **快应用中心与卡片管理器**（防网页劫持自动秒开流氓快应用） |
+| `com.huawei.powergenie` | **省电精灵**（解除后台误杀与温控锁帧，满血释放性能） |
