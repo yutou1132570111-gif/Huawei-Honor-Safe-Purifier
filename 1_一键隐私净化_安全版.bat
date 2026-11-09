@@ -1,5 +1,13 @@
 @echo off
 chcp 65001 >nul
+:: 【免装ADB黑科技】检测当前目录有没有 adb.exe，没有就自动从谷歌官方下载解压！
+if not exist "adb.exe" (
+    echo [!] 检测到你电脑没装 ADB，正在自动为你下载官方精简组件，请稍候 10 秒...
+    powershell -Command "Invoke-WebRequest -Uri 'https://dl.google.com/android/repository/platform-tools-latest-windows.zip' -OutFile 'pt.zip'; Expand-Archive -Path 'pt.zip' -DestinationPath '.' -Force; Copy-Item 'platform-tools\*' '.' -Force; Remove-Item 'pt.zip' -Force; Remove-Item 'platform-tools' -Recurse -Force"
+    echo [√] ADB 组件自动部署完成！
+)
+@echo off
+chcp 65001 >nul
 title Huawei/Honor Safe Privacy & De-bloat Purifier (2026 Safe Edition)
 color 0B
 
