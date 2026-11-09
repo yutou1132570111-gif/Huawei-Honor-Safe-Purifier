@@ -8,61 +8,58 @@ if not exist "adb.exe" (
 )
 @echo off
 chcp 65001 >nul
-title Huawei/Honor Safe Privacy & De-bloat Purifier (2026 Safe Edition)
-color 0B
+title 【红烬副控】华为/荣耀 家族一键静音净网工作流 (V2.0 完全体)
+color 0C
 
-echo ============================================================================
-echo   Huawei / Honor 隐私净化与后台轻量化工具 (Safe Edition - 保留应用市场与日常功能)
-echo ============================================================================
+echo ====================================================================
+echo   【红烬副控】正在连接设备，请确保手机已开启【USB调试】并点击允许...
+echo ====================================================================
+adb wait-for-device
+echo [√] 设备已锁定！开始执行赛博驱魔协议...
 echo.
-echo [!] 正在检测 ADB 设备连接状态...
-adb devices
-echo.
-echo [提示] 请确保手机已开启【开发者选项】与【USB调试】，并在手机弹窗上点击“允许”！
-pause
 
-echo.
-echo ----------------------------------------------------------------------------
-echo [阶段 1/4] 正在清除用户体验计划、遥测日志与后台数据收集进程...
-echo ----------------------------------------------------------------------------
-adb shell pm uninstall -k --user 0 com.huawei.bd
-adb shell pm uninstall -k --user 0 com.huawei.hiview
-adb shell pm uninstall -k --user 0 com.huawei.hiviewtunnel
-adb shell pm uninstall -k --user 0 com.huawei.imonitor
-adb shell pm uninstall -k --user 0 com.huawei.powergenie
+:: 1. 建立华为+荣耀的核心内鬼、遥测与广告组件全名单
+set BLOAT_LIST=^
+ com.huawei.bd com.hihonor.bd ^
+ com.huawei.imonitor com.hihonor.imonitor ^
+ com.huawei.hiview com.huawei.hiviewtunnel ^
+ com.hihonor.hiview com.hihonor.hiviewtunnel ^
+ com.huawei.android.totemweather com.hihonor.android.totemweather ^
+ com.huawei.fastapp com.hihonor.fastapp ^
+ com.huawei.ohos.famanager ^
+ com.huawei.intelligent com.hihonor.hiboard ^
+ com.huawei.magazine com.hihonor.magazine ^
+ com.huawei.search com.hihonor.search ^
+ com.huawei.browser com.hihonor.browser ^
+ com.huawei.gamebox com.hihonor.gamebox ^
+ com.huawei.skytone com.huawei.vassistant
 
-echo.
-echo ----------------------------------------------------------------------------
-echo [阶段 2/4] 正在清除全局广告联盟、智慧营销推送与负一屏资讯流...
-echo ----------------------------------------------------------------------------
-adb shell pm uninstall -k --user 0 com.huawei.intelligent
-adb shell pm uninstall -k --user 0 com.huawei.search
-adb shell pm uninstall -k --user 0 com.huawei.magazine
-adb shell pm uninstall -k --user 0 com.huawei.android.totemweather
-adb shell pm uninstall -k --user 0 com.huawei.fastapp
-adb shell pm uninstall -k --user 0 com.hihonor.fastapp
-adb shell pm uninstall -k --user 0 com.huawei.ohos.famanager
-
-echo.
-echo ----------------------------------------------------------------------------
-echo [阶段 3/4] 正在卸载高耗电预装娱乐组件与语音追踪助手（可随时恢复）...
-echo ----------------------------------------------------------------------------
-adb shell pm uninstall -k --user 0 com.huawei.vassistant
-adb shell pm uninstall -k --user 0 com.huawei.hitouch
-adb shell pm uninstall -k --user 0 com.huawei.skytone
-adb shell pm uninstall -k --user 0 com.huawei.wallet
-adb shell pm uninstall -k --user 0 com.huawei.browser
+:: 2. 批量执行：剥夺通知权限 + 禁止后台运行 + 直接冰封停用
+for %%p in (%BLOAT_LIST%) do (
+    echo [净化] 正在压制组件: %%p
+    adb shell cmd appops set %%p POST_NOTIFICATION ignore 2>nul
+    adb shell cmd appops set %%p RUN_IN_BACKGROUND ignore 2>nul
+    adb shell cmd appops set %%p RUN_ANY_IN_BACKGROUND ignore 2>nul
+    adb shell pm disable-user --user 0 %%p 2>nul
+)
 
 echo.
-echo ----------------------------------------------------------------------------
-echo [阶段 4/4] 正在保护核心生态组件（保留应用市场、HMS基础服务与桌面）...
-echo ----------------------------------------------------------------------------
-echo [√] 已跳过 com.huawei.appmarket (华为应用市场 - 安全保留)
-echo [√] 已跳过 com.huawei.hwid (HMS Core 核心框架 - 安全保留)
-echo [√] 已跳过 com.android.Gallery3d (系统图库 - 安全保留)
+:: 3. 单独驯服【应用市场】与【广告推送】（保留下载功能，拔掉通知和后台！）
+for %%s in (com.huawei.appmarket com.hihonor.appmarket com.huawei.hms.ads) do (
+    echo [静音] 正在给 %%s 戴上静音口球并限制后台...
+    adb shell cmd appops set %%s POST_NOTIFICATION ignore 2>nul
+    adb shell cmd appops set %%s RUN_IN_BACKGROUND ignore 2>nul
+    adb shell cmd appops set %%s RUN_ANY_IN_BACKGROUND ignore 2>nul
+)
 
 echo.
-echo ============================================================================
-echo   [完成] 净化完毕！后台遥测与耗电毒瘤已拔除，请重启手机享受丝滑续航！
-echo ============================================================================
+:: 4. 顺手关闭系统底层的错误日志与用户体验上报参数
+echo [底层] 正在物理掐断系统级遥测与错误日志上报开关...
+adb shell settings put global send_action_app_error 0
+adb shell settings put secure user_experience_involved 0
+
+echo.
+echo ====================================================================
+echo [★] 净化完成！骚扰通知与后台遥测已全部物理掐断，请重启手机！
+echo ====================================================================
 pause
