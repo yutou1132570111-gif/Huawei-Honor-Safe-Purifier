@@ -18,8 +18,17 @@ adb wait-for-device
 echo [√] 设备已连接！开始恢复组件...
 echo.
 
-:: 恢复所有被禁用的组件（完整55个组件列表）
+:: 恢复所有被禁用的组件（完整组件列表）
 set BLOAT_LIST=^
+com.huawei.msdp com.hihonor.msdp ^
+ com.huawei.dmsdp com.hihonor.dmsdp ^
+ com.huawei.behaviorauth com.hihonor.behaviorauth ^
+ com.huawei.iaware com.hihonor.iaware ^
+ com.huawei.synergy com.hihonor.synergy ^
+ com.huawei.ohos.collaborationcenter com.hihonor.ohos.collaborationcenter ^
+ com.huawei.nearby com.hihonor.nearby ^
+ com.huawei.arengine.service com.hihonor.arengine.service ^
+ com.huawei.android.FloatTasks com.hihonor.android.FloatTasks ^
  com.huawei.hwdetectrepair com.hihonor.hwdetectrepair ^
  com.huawei.hwdiagnosis com.hihonor.hwdiagnosis ^
  com.huawei.hiview com.huawei.hiviewtunnel ^
@@ -45,9 +54,7 @@ set BLOAT_LIST=^
  com.huawei.browser com.hihonor.browser ^
  com.huawei.gamebox com.hihonor.gamebox ^
  com.huawei.skytone com.huawei.vassistant ^
- com.huawei.hitouch ^
- com.huawei.appmarket com.hihonor.appmarket ^
- com.huawei.hms.ads com.hihonor.hms.ads
+ com.huawei.hitouch
 
 echo [第一步] 恢复已卸载的应用...
 for %%p in (%BLOAT_LIST%) do (
