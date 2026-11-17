@@ -73,5 +73,3 @@ for p in com.huawei.msdp com.hihonor.msdp com.huawei.dmsdp com.hihonor.dmsdp com
 | `com.huawei.powergenie` | **省电精灵**（解除后台误杀与温控锁帧，满血释放性能） |
 
 </ElicitationsGroup>
-
-```
